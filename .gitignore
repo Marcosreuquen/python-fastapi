@@ -1,0 +1,6 @@
+.env
+venv
+.flake8
+fastapi.session.sql
+.vscode
+__pycache__
