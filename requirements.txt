@@ -1,4 +1,4 @@
-lembic==1.8.1
+alembic==1.8.1
 anyio==3.6.1
 autopep8==1.7.0
 bcrypt==4.0.0

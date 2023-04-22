@@ -1,3 +1,5 @@
+# Requirements
+
 ## Python version
 
 > 3.10.6
@@ -6,38 +8,52 @@
 
 > 22.2.2
 
-## requirements
+## dependencies
 
 > requirements.txt
 
-# Initialize virtual environment
+# Python Environment
+
+## Initialize virtual environment
 
 `python -m venv <environment>`
 
-# Install requirements
+## Install requirements
 
 `pip install -r requirements.txt`
 
-# Start server:
+# Start application
 
-`uuvicorn app.main:app --host 0.0.0.0 --port 8000 --reload`
+## Start server:
 
-# Build docker image
+`uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload`
 
-`docker-compose docker-compose-dev.yml up -d`
+[Server](http://localhost:8000/)
 
-# View image logs
+[Docs](http://localhost:8000/docs)
 
-`docker-compose -f docker-compose-dev.yml --follow logs`
+## Build docker image
 
-# Shutdown image
+`docker-compose up --build -d`
 
-`docker-compose -f docker-compose-dev.yml down`
+## View image logs
 
-# Create migration
+`docker-compose logs -f api`
+
+## Shutdown image
+
+`docker-compose down`
+
+# Alembic
+
+## Create session
+
+`alembic init alembic`
+
+## Create migration
 
 `alembic revision --autogenerate`
 
-# Upgrade DB
+## Upgrade DB
 
 `alembic upgrade head`
