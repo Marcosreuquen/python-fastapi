@@ -4,22 +4,19 @@ from sqlalchemy.orm import Session
 
 from app.utils import schemas
 from ..utils import jwt
-from ..models import database, models
+from ..models import database
 from ..utils import oauth2
+from app.controllers.users import find_user_by_email
 
 router = APIRouter(tags=["Authentication"])
 
 
 @router.post("/login", response_model=schemas.Token)
-def login(
+async def login(
     user_credentials: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(database.get_db),
 ):
-    user = (
-        db.query(models.User)
-        .filter(models.User.email == user_credentials.username)
-        .first()
-    )
+    user = await find_user_by_email(db, user_credentials.username)
 
     if not user:
         raise HTTPException(
